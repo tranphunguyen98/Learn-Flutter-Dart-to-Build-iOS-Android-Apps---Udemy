@@ -14,9 +14,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _indexQuestion = 0;
   var _questions = [
-    "What\'s your favorite color?",
-    "What\'s your favorite animal?",
-    "What\'s your favorite flower?"
+    {
+      "questionText": "What\'s your favorite color?",
+      "answers": ["Blue", "Red", "White", "Yellow"]
+    },
+    {
+      "questionText": "What\'s your favorite animal?",
+      "answers": ["Elephant", "Snake", "Turtle", "Tiger"]
+    },
+    {
+      "questionText": "What\'s your favorite flower?",
+      "answers": ["Rose", "Violet", "Daise"]
+    },
   ];
 
   void answerQuestion() {
@@ -40,10 +49,11 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Question(_questions[_indexQuestion]),
-            Answer("Answer 1.",answerQuestion),
-            Answer("Answer 2.",answerQuestion),
-            Answer("Answer 3.",answerQuestion),
+            Question(_questions[_indexQuestion]["questionText"]),
+            ...(_questions[_indexQuestion]["answers"] as List<String>)
+                .map((answer) {
+              return Answer(answer, answerQuestion);
+            }),
           ],
         ),
       ),
