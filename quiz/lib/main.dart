@@ -5,13 +5,13 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var indexQuestion = 0;
-  var questions = [
+class _MyAppState extends State<MyApp> {
+  var _indexQuestion = 0;
+  var _questions = [
     "What\'s your favorite color?",
     "What\'s your favorite animal?",
     "What\'s your favorite flower?"
@@ -19,12 +19,12 @@ class MyAppState extends State<MyApp> {
 
   void answerQuestion() {
     setState(() {
-      if(indexQuestion < 2) {
-        indexQuestion = indexQuestion + 1;
-        print(indexQuestion);
+      if (_indexQuestion < 2) {
+        _indexQuestion = _indexQuestion + 1;
+        print(_indexQuestion);
       } else {
-        indexQuestion = 0;
-        print(indexQuestion);
+        _indexQuestion = 0;
+        print(_indexQuestion);
       }
     });
   }
@@ -38,7 +38,7 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[indexQuestion]),
+            Text(_questions[_indexQuestion]),
             RaisedButton(
               child: Text("Answer 1."),
               onPressed: answerQuestion,
