@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
   var indexQuestion = 0;
   var questions = [
     "What\'s your favorite color?",
@@ -11,13 +18,15 @@ class MyApp extends StatelessWidget {
   ];
 
   void answerQuestion() {
-    if(indexQuestion < 2) {
-      indexQuestion = indexQuestion + 1;
-      print(indexQuestion);
-    } else {
-      indexQuestion = 0;
-      print(indexQuestion);
-    }
+    setState(() {
+      if(indexQuestion < 2) {
+        indexQuestion = indexQuestion + 1;
+        print(indexQuestion);
+      } else {
+        indexQuestion = 0;
+        print(indexQuestion);
+      }
+    });
   }
 
   @override
