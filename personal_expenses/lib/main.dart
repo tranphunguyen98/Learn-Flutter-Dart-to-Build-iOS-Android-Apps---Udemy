@@ -18,7 +18,6 @@ class MyHomePage extends StatelessWidget {
     Transaction.now(id: "1", title: "New Shoes", amount: 12.3),
     Transaction.now(id: "2", title: "New Clothes", amount: 22.1),
     Transaction.now(id: "3", title: "Bananas", amount: 13.9),
-    
   ];
 
   @override
@@ -28,7 +27,7 @@ class MyHomePage extends StatelessWidget {
         title: Text("Personal Expenses"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -40,10 +39,13 @@ class MyHomePage extends StatelessWidget {
               child: Text("Chart"),
             ),
           ),
-          Card(
-            color: Colors.yellow,
-            child: Text("Tx"),
-          )
+          Column(
+              children: transactions.map((trans) {
+            return Card(
+              color: Colors.yellow,
+              child: Text(trans.title),
+            );
+          }).toList()),
         ],
       ),
     );
