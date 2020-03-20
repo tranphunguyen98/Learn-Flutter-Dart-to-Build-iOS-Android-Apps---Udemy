@@ -22,7 +22,7 @@ class ListTransaction extends StatelessWidget {
                     border: Border.all(color: Colors.purple, width: 2)),
                 padding: EdgeInsets.all(8),
                 child: Text(
-                  "\$${_transactions[index].amount}",
+                  "\$${_transactions[index].amount.toStringAsFixed(2)}",
                   style: TextStyle(
                       color: Colors.purple,
                       fontWeight: FontWeight.bold,

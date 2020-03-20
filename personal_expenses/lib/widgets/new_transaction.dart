@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NewTransaction extends StatelessWidget {
   final Function addTransaction;
@@ -20,8 +21,10 @@ class NewTransaction extends StatelessWidget {
             controller: titleControler,
           ),
           TextField(
-            decoration: InputDecoration(labelText: "Amout"),
+            decoration: InputDecoration(labelText: "Amount"),
             controller: amountControler,
+            keyboardType: TextInputType.number,
+            onSubmitted: (_) => submitData(),
           ),
           FlatButton(
             child: Text(
@@ -29,12 +32,22 @@ class NewTransaction extends StatelessWidget {
               style: TextStyle(color: Colors.purple),
             ),
             onPressed: () {
-              addTransaction(
-                  titleControler.text, double.parse(amountControler.text));
+              submitData();
             },
           )
         ]),
       ),
     );
+  }
+
+  void submitData() {
+    final enteredTitle = titleControler.text;
+    final enteredAmount = double.parse(amountControler.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+
+    addTransaction(enteredTitle, enteredAmount);
   }
 }
