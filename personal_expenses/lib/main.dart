@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       home: MyHomePage(),
+      theme: ThemeData(primarySwatch: Colors.purple, accentColor: Colors.amber),
     );
   }
 }
@@ -33,9 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
         context: buildContext,
         builder: (context) {
           return GestureDetector(
-            onTap: () {},
-            behavior: HitTestBehavior.opaque,
-            child: NewTransaction(_addTransaction));
+              onTap: () {},
+              behavior: HitTestBehavior.opaque,
+              child: NewTransaction(_addTransaction));
         });
   }
 

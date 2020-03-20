@@ -19,12 +19,12 @@ class ListTransaction extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(4)),
-                    border: Border.all(color: Colors.purple, width: 2)),
+                    border: Border.all(color: Theme.of(context).primaryColor, width: 2)),
                 padding: EdgeInsets.all(8),
                 child: Text(
                   "\$${_transactions[index].amount.toStringAsFixed(2)}",
                   style: TextStyle(
-                      color: Colors.purple,
+                      color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
                 ),
