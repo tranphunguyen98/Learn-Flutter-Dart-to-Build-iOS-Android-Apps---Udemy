@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
+import 'chart_bar.dart';
+
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
 
@@ -25,7 +27,13 @@ class Chart extends StatelessWidget {
       print(DateFormat.E().format(weekDay));
       print(totalSum);
 
-      return {'day': DateFormat.E().format(weekDay), 'amount': 9.99};
+      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
+    });
+  }
+
+  double get totalSpending {
+    return groupedTransactionValues.fold(0.0, (sum, item) {
+      return sum + item['amount'];
     });
   }
 
@@ -35,8 +43,9 @@ class Chart extends StatelessWidget {
         elevation: 6,
         margin: EdgeInsets.all(20),
         child: Row(
-          children: groupedTransactionValues.map((value) {
-            return Text(value['day']);
+          children: groupedTransactionValues.map((data) {
+            return ChartBar(data['day'], data['amount'],
+               totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending);
           }).toList(),
         ));
   }

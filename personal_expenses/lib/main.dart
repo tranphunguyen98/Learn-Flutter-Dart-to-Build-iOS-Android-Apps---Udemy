@@ -27,9 +27,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    Transaction.now(id: "1", title: "New Shoes", amount: 12.3),
-    Transaction.now(id: "2", title: "New Clothes", amount: 22.1),
-    Transaction.now(id: "3", title: "Bananas", amount: 13.9),
+    // Transaction.now(id: "1", title: "New Shoes", amount: 12.3),
+    // Transaction.now(id: "2", title: "New Clothes", amount: 22.1),
+    // Transaction.now(id: "3", title: "Bananas", amount: 13.9),
   ];
 
   List<Transaction> get _recentTransactions {
