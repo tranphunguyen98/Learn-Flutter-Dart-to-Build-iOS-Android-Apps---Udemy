@@ -18,46 +18,36 @@ class ListTransaction extends StatelessWidget {
                   "No transaction added yet!",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 12,),
+                SizedBox(
+                  height: 12,
+                ),
                 Container(
-                  height: 200,
-                  child: Image.asset("assets/images/sleep.png",fit: BoxFit.cover,)),
+                    height: 200,
+                    child: Image.asset(
+                      "assets/images/sleep.png",
+                      fit: BoxFit.cover,
+                    )),
               ],
             )
           : ListView.builder(
               itemBuilder: (buildContext, index) {
                 return Card(
-                  child: Row(children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          border: Border.all(
-                              color: Theme.of(context).primaryColor, width: 2)),
-                      padding: EdgeInsets.all(8),
-                      child: Text(
-                        "\$${_transactions[index].amount.toStringAsFixed(2)}",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FittedBox(
+                            child: Text("\$${_transactions[index].amount}")),
                       ),
+                      radius: 30,
                     ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            _transactions[index].title,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            DateFormat.yMMMd()
-                                .format(_transactions[index].date),
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ]),
-                  ]),
+                    title: Text(_transactions[index].title,
+                        style: Theme.of(context).textTheme.title),
+                    subtitle: Text(
+                        DateFormat.yMMMd().format(_transactions[index].date)),
+                  ),
                 );
               },
               itemCount: _transactions.length,
