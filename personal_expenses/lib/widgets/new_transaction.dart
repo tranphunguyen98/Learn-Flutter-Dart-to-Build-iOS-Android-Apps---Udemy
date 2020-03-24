@@ -73,13 +73,15 @@ class _NewTransactionState extends State<NewTransaction> {
 
   void submitData() {
     final enteredTitle = _titleControler.text;
-    final enteredAmount = double.parse(_amountControler.text);
+    final enteredAmount = _amountControler.text.isNotEmpty
+        ? double.parse(_amountControler.text)
+        : 0;
 
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
       return;
     }
 
-    widget.addTransaction(enteredTitle, enteredAmount);
+    widget.addTransaction(enteredTitle, enteredAmount, _selectedDate);
 
     Navigator.pop(context);
   }
