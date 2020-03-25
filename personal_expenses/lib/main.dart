@@ -100,6 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
 
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
@@ -107,29 +110,41 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Show Chart"),
-                Switch(
-                  value: _showChart,
-                  onChanged: (val) {
-                    setState(() {
-                      _showChart = val;
-                    });
-                  },
-                ),
-              ],
-            ),
-            _showChart
-                ? Container(
-                    height: bodyHeight * 0.3,
-                    child: Chart(_recentTransactions),
-                  )
-                : Container(
-                    height: bodyHeight * 0.7,
-                    child: ListTransaction(_transactions, _deleteTransaction),
+            if (isLandscape)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Show Chart"),
+                  Switch(
+                    value: _showChart,
+                    onChanged: (val) {
+                      setState(() {
+                        _showChart = val;
+                      });
+                    },
                   ),
+                ],
+              ),
+            if (isLandscape)
+              _showChart
+                  ? Container(
+                      height: bodyHeight * 0.7,
+                      child: Chart(_recentTransactions),
+                    )
+                  : Container(
+                      height: bodyHeight * 0.7,
+                      child: ListTransaction(_transactions, _deleteTransaction),
+                    ),
+            if (!isLandscape)
+              Container(
+                height: bodyHeight * 0.3,
+                child: Chart(_recentTransactions),
+              ),
+            if (!isLandscape)
+              Container(
+                height: bodyHeight * 0.7,
+                child: ListTransaction(_transactions, _deleteTransaction),
+              ),
           ],
         ),
       ),
