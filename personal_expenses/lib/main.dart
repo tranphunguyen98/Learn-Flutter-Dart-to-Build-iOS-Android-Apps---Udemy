@@ -96,12 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    final bodyHeight = MediaQuery.of(context).size.height -
-        appBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+    final mediaQuery = MediaQuery.of(context);
 
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+    final bodyHeight = mediaQuery.size.height -
+        appBar.preferredSize.height -
+        mediaQuery.padding.top;
+
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     return Scaffold(
       appBar: appBar,
