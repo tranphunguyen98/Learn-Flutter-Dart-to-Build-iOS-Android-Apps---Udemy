@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/widgets/main_drawer.dart';
 
 class FilterScreen extends StatefulWidget {
   static const routeName = "/filter";
@@ -10,8 +11,11 @@ class FilterScreen extends StatefulWidget {
 class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "A"
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Your Filters"),
+      ),
+      drawer: MainDrawer(),
     );
   }
 }
