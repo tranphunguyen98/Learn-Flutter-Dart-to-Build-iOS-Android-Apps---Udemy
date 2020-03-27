@@ -6,6 +6,18 @@ class MealItem extends StatelessWidget {
 
   MealItem(this.meal);
 
+  Widget _buildRowInformationItem(IconData icon, String text) {
+    return Row(
+      children: <Widget>[
+        Icon(icon),
+        SizedBox(
+          width: 6,
+        ),
+        Text(text),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -32,7 +44,45 @@ class MealItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                Positioned(
+                  bottom: 24,
+                  right: 12,
+                  child: Container(
+                    width: 300,
+                    color: Colors.black54,
+                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 18),
+                    child: Text(
+                      meal.title,
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                )
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  _buildRowInformationItem(
+                    Icons.schedule,
+                    "${meal.duration} min",
+                  ),
+                  _buildRowInformationItem(
+                    Icons.work,
+                    meal.complexityText,
+                  ),
+                  _buildRowInformationItem(
+                    Icons.attach_money,
+                    meal.affordabilityText,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

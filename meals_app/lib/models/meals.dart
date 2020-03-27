@@ -27,6 +27,38 @@ class Meal {
   final bool isVegan;
   final bool isVegetarian;
 
+  String get complexityText {
+    switch (complexity) {
+      case Complexity.Simple:
+        return "Simple";
+        break;
+      case Complexity.Hard:
+        return "Hard";
+        break;
+      case Complexity.Challenging:
+        return "Challenging";
+        break;
+      default:
+        return "Unknown";
+    }
+  }
+
+  String get affordabilityText {
+    switch (affordability) {
+      case Affordability.Affordable:
+        return "Affordable";
+        break;
+      case Affordability.Pricey:
+        return "Pricey";
+        break;
+      case Affordability.Luxurious:
+        return "Luxurious";
+        break;
+      default:
+        return "Unknown";
+    }
+  }
+
   const Meal({
     @required this.id,
     @required this.categories,
