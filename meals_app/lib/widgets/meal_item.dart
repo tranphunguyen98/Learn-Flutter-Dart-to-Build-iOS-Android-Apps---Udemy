@@ -4,18 +4,18 @@ import 'package:meals_app/screens/meal_detail_screen.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
-  final Function deleteMeal;
+  // final Function deleteMeal;
 
-  MealItem(this.meal,this.deleteMeal);
+  MealItem(this.meal);
 
   void _selectMeal(BuildContext context) {
     Navigator.of(context).pushNamed(
       MealDetailScreen.routeName,
       arguments: meal,
     ).then((mealId) {
-      if(mealId != null) {
-       deleteMeal(mealId);
-      }
+      // if(mealId != null) {
+      //  deleteMeal(mealId);
+      // }
     });
   }
 
