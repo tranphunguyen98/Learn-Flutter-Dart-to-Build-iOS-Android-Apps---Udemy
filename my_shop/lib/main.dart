@@ -10,21 +10,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
+        accentColor: Colors.deepOrange,
+        fontFamily: "Lato",
       ),
       home: ProductsOverviewScreen(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("T"),
-      ),
-      body: Center(),
     );
   }
 }
