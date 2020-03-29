@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
           ProductDetailScreen.routeName: (_) => ProductDetailScreen(),
         },
       ), create: (_) => Products(),
+
     );
   }
 }
