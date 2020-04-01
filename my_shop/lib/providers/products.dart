@@ -58,20 +58,24 @@ class Products with ChangeNotifier {
     try {
       final response = await http.get(url);
 
-      //final productData = json.encode(response.body) as Map<String, dynamic>;
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
 
-      print(response.body);
+      final List<Product> products = [];
 
-      // productData.forEach((key, value) {
-      //   items.add(Product(
-      //     id: key,
-      //     description: value['description'],
-      //     imageUrl: value['imageUrl'],
-      //     price: value['price'],
-      //     title: value['title'],
-      //     isFavorite: value['isFavorite'],
-      //   ));
-      // });
+      extractedData.forEach((key, value) {
+        products.add(Product(
+          id: key,
+          description: value['description'],
+          imageUrl: value['imageUrl'],
+          price: value['price'],
+          title: value['title'],
+          isFavorite: value['isFavorite'],
+        ));
+      });
+
+      _items = products;
+
+      notifyListeners();
     } catch (error) {
       print("error: $error");
       throw error;
