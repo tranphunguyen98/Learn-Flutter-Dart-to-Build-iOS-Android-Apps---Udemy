@@ -7,10 +7,10 @@ import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
   List<Product> _items;
-
   final String _authToken;
+  final String userId;
 
-  Products(this._authToken, this._items);
+  Products(this._authToken, this.userId, this._items);
 
   List<Product> get items {
     return [..._items];
@@ -33,16 +33,28 @@ class Products with ChangeNotifier {
 
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
 
+      if (extractedData == null) {
+        return;
+      }
+
+      final urlFavorite =
+          "https://myshop-77c17.firebaseio.com/userFavorites/$userId.json?auth=$_authToken";
+
+      final favoriteResult = await http.get(urlFavorite);
+
+      final favoriteData = json.decode(favoriteResult.body);
+
       final List<Product> products = [];
 
-      extractedData.forEach((key, value) {
+      extractedData.forEach((prodId, prodData) {
         products.add(Product(
-          id: key,
-          description: value['description'],
-          imageUrl: value['imageUrl'],
-          price: value['price'],
-          title: value['title'],
-          isFavorite: value['isFavorite'],
+          id: prodId,
+          description: prodData['description'],
+          imageUrl: prodData['imageUrl'],
+          price: prodData['price'],
+          title: prodData['title'],
+          isFavorite:
+              favoriteData == null ? false : favoriteData[prodId] ?? false,
         ));
       });
 
@@ -67,7 +79,6 @@ class Products with ChangeNotifier {
           'description': product.description,
           'imageUrl': product.imageUrl,
           'price': product.price,
-          'isFavorite': product.isFavorite,
         }),
       );
 
