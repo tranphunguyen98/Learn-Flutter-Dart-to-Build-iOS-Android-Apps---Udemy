@@ -3,6 +3,7 @@ import 'package:my_shop/providers/auth.dart';
 import 'package:my_shop/providers/cart.dart';
 import 'package:my_shop/providers/orders.dart';
 import 'package:my_shop/providers/products.dart';
+import 'package:my_shop/providers/splash_screen.dart';
 import 'package:my_shop/screens/auth_screen.dart';
 import 'package:my_shop/screens/cart_screen.dart';
 import 'package:my_shop/screens/edit_product_screen.dart';
@@ -48,7 +49,16 @@ class MyApp extends StatelessWidget {
             accentColor: Colors.deepOrange,
             fontFamily: "Lato",
           ),
-          home: auth.isAuth ? ProductsOverviewScreen() : AuthScreen(),
+          home: auth.isAuth
+              ? ProductsOverviewScreen()
+              : FutureBuilder(
+                  future: auth.tryAutoLogin(),
+                  builder: (ctx, authResultSnapshot) =>
+                      authResultSnapshot.connectionState ==
+                              ConnectionState.waiting
+                          ? SplashScreen()
+                          : AuthScreen(),
+                ),
           routes: {
             ProductDetailScreen.routeName: (_) => ProductDetailScreen(),
             CartScreen.routeName: (_) => CartScreen(),
