@@ -10,7 +10,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.yellow,
-        body: Container(),
+        body: SafeArea(
+          child: Container(
+            color: Colors.purple,
+            child: Text("Heleo"),
+          ),
+        ),
       ),
     );
   }
