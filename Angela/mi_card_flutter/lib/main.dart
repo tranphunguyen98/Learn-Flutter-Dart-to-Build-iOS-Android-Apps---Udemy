@@ -5,48 +5,30 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final String urlImage =
+      'https://zicxa.com/hinh-anh/wp-content/uploads/2019/09/Tuy%E1%BB%83n-t%E1%BA%ADp-h%C3%ACnh-%E1%BA%A3nh-hot-girl-h%E1%BB%8Dc-sinh-Cute-d%E1%BB%85-th%C6%B0%C6%A1ng-3-1-750x938.jpg';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.teal,
         body: SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Container(
-                color: Colors.purple,
-                width: 100,
-                height: 100,
-                child: Text("1"),
+            child: Column(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50.0,
+              backgroundImage: NetworkImage(urlImage),
+            ),
+            Text(
+              'Tran Phu Nguyen',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    color: Colors.red,
-                    width: 100,
-                    height: 100,
-                    child: Text("2"),
-                  ),
-                  Container(
-                    color: Colors.white,
-                    width: 100,
-                    height: 100,
-                    child: Text("2"),
-                  ),
-                ],
-              ),
-              Container(
-                color: Colors.green,
-                width: 100,
-                height: 100,
-                child: Text("3"),
-              ),
-            ],
-          ),
-        ),
+            ),
+          ],
+        )),
       ),
     );
   }
