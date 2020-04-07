@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.teal,
         body: SafeArea(
             child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             CircleAvatar(
               radius: 50.0,
@@ -38,53 +39,42 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              color: Colors.white,
-              padding: EdgeInsets.all(16.0),
+            SizedBox(
+              height: 20.0,
+              width: 150,
+              child: Divider(
+                color: Colors.teal.shade100,
+              ),
+            ),
+            Card(
               margin: EdgeInsets.all(16.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
+              child: ListTile(
+                  leading: Icon(
                     Icons.phone,
                     color: Colors.teal,
                   ),
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  Text(
+                  title: Text(
                     '+84 35 6030 876',
                     style: TextStyle(
                       color: Colors.teal,
                       fontFamily: 'Source Sans Pro',
-                      fontSize: 20,
                     ),
-                  ),
-                ],
-              ),
+                  )),
             ),
-            Container(
-              color: Colors.white,
-              padding: EdgeInsets.all(16.0),
+            Card(
               margin: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(
+              child: ListTile(
+                  leading: Icon(
                     Icons.email,
                     color: Colors.teal,
                   ),
-                  SizedBox(
-                    width: 16.0,
-                  ),
-                  Text(
+                  title: Text(
                     'tranphunguyen.fit@gmail.com',
                     style: TextStyle(
                       color: Colors.teal,
                       fontFamily: 'Source Sans Pro',
-                      fontSize: 20,
                     ),
-                  ),
-                ],
-              ),
+                  )),
             ),
           ],
         )),
