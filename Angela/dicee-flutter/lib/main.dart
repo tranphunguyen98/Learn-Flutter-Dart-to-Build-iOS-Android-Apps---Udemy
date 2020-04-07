@@ -49,16 +49,20 @@ class DicePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: FlatButton(
+              onPressed: () {
+                print('left');
+              },
               child: Image.asset(
                 'images/dice1.png',
               ),
             ),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: FlatButton(
+              onPressed: () {
+                print('right');
+              },
               child: Image.asset(
                 'images/dice1.png',
               ),
