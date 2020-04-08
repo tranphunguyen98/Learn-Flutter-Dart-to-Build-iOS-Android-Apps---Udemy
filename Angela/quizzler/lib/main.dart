@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:quizzler/dummy_data.dart';
+import 'package:quizzler/quiz_brain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -31,7 +31,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   final List<bool> scoreKeeper = [];
-  final questions = DummyData.questions;
+  final questions = QuizBrain.questions;
   int indexQuestion = 0;
 
   @override
