@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quizzler/dummy_data.dart';
 
 void main() => runApp(Quizzler());
 
@@ -29,44 +30,9 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List scoreKeeper = [
-    true,
-    false,
-    true,
-    false,
-    false,
-    // false,
-    // true,
-    // false,
-    // true,
-    // true,
-    // false,
-    // true,
-    // false,
-    // false,
-    // false,
-    // true,
-    // false,
-    // true,
-    // true,
-    // false,
-    // true,
-    // false,
-    // false,
-    // false,
-    // true,
-    // false,
-    // true,
-    // true,
-    // false,
-    // true,
-    // false,
-    // false,
-    // false,
-    // true,
-    // false,
-    // true,
-  ];
+  final questions = DummyData.questions;
+  final List<bool> scoreKeeper = [];
+  int indexQuestion = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
           flex: 5,
           child: Center(
             child: Text(
-              'This is where the question text will go.',
+              questions[indexQuestion].content,
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.white,
@@ -100,7 +66,16 @@ class _QuizPageState extends State<QuizPage> {
             color: Colors.green,
             onPressed: () {
               setState(() {
-                scoreKeeper.add(true);
+                if (questions[indexQuestion].answer == true) {
+                  scoreKeeper.add(true);
+                } else {
+                  scoreKeeper.add(false);
+                }
+                if (indexQuestion < questions.length - 1) {
+                  indexQuestion += 1;
+                } else {
+                  print('done');
+                }
               });
             },
           ),
