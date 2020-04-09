@@ -31,8 +31,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   final List<bool> scoreKeeper = [];
-  final questions = QuizBrain.questions;
-  int indexQuestion = 0;
+  final quizBrain = QuizBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class _QuizPageState extends State<QuizPage> {
           flex: 5,
           child: Center(
             child: Text(
-              questions[indexQuestion].content,
+              quizBrain.getQuestion(),
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.white,
@@ -66,7 +65,7 @@ class _QuizPageState extends State<QuizPage> {
             color: Colors.green,
             onPressed: () {
               setState(() {
-                indexQuestion++;
+                quizBrain.nextQuestion();
               });
             },
           ),
@@ -87,7 +86,7 @@ class _QuizPageState extends State<QuizPage> {
             color: Colors.red,
             onPressed: () {
               setState(() {
-                indexQuestion++;
+                quizBrain.nextQuestion();
               });
             },
           ),

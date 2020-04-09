@@ -1,6 +1,14 @@
 class Question {
-  final String content;
-  final bool answer;
+  String _content;
+  bool _answer;
 
-  Question(this.content, this.answer);
+  String get content {
+    return _content;
+  }
+
+  bool get answer {
+    return _answer;
+  }
+
+  Question(this._content, this._answer);
 }
