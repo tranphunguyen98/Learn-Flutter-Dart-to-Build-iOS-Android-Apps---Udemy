@@ -44,4 +44,6 @@ class QuizBrain {
       index++;
     }
   }
+
+  bool isEndOfList() => index == _questions.length - 1;
 }
