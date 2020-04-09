@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -104,6 +105,7 @@ class _QuizPageState extends State<QuizPage> {
     final correctAnswer = quizBrain.getAnswer();
 
     if (quizBrain.isEndOfList()) {
+      showAlert();
       return;
     }
 
@@ -126,5 +128,37 @@ class _QuizPageState extends State<QuizPage> {
 
       quizBrain.nextQuestion();
     });
+  }
+
+  void reset() {
+    setState(() {
+      quizBrain.resetIndex();
+      scoreKeeper.clear();
+    });
+  }
+
+  void showAlert() {
+    Alert(
+      context: context,
+      title: 'Finish',
+      content: Text(
+        'You Done!',
+      ),
+      buttons: [
+        DialogButton(
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          onPressed: () {
+            reset();
+            Navigator.pop(context);
+          },
+        )
+      ],
+      closeFunction: reset,
+    ).show();
   }
 }

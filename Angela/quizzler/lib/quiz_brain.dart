@@ -46,4 +46,8 @@ class QuizBrain {
   }
 
   bool isEndOfList() => index == _questions.length - 1;
+
+  void resetIndex() {
+    index = 0;
+  }
 }
