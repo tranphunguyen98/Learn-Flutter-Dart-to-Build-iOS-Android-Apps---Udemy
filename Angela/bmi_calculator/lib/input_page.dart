@@ -20,13 +20,11 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.FEMALE;
 
   void changeSex(Gender gender) {
-    if (selectedGender == gender) {
-      return;
+    if (selectedGender != gender) {
+      setState(() {
+        selectedGender = gender;
+      });
     }
-
-    setState(() {
-      selectedGender = gender;
-    });
   }
 
   @override
@@ -42,32 +40,28 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: InkWell(
-                      onTap: () {
+                    child: ReusableCard(
+                      onPressed: () {
                         changeSex(Gender.FEMALE);
                       },
-                      child: ReusableCard(
-                        color: activeCardColor,
-                        cardChild: IconContent(
-                          icon: FontAwesomeIcons.venus,
-                          lable: 'FEMALE',
-                          isActive: selectedGender == Gender.FEMALE,
-                        ),
+                      color: activeCardColor,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        lable: 'FEMALE',
+                        isActive: selectedGender == Gender.FEMALE,
                       ),
                     ),
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: () {
+                    child: ReusableCard(
+                      onPressed: () {
                         changeSex(Gender.MALE);
                       },
-                      child: ReusableCard(
-                        color: activeCardColor,
-                        cardChild: IconContent(
-                          icon: FontAwesomeIcons.mars,
-                          lable: 'MALE',
-                          isActive: selectedGender == Gender.MALE,
-                        ),
+                      color: activeCardColor,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        lable: 'MALE',
+                        isActive: selectedGender == Gender.MALE,
                       ),
                     ),
                   ),
