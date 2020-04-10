@@ -6,14 +6,32 @@ import 'icon_content.dart';
 
 const activeCardColor = Color(0xFF1D1E33);
 
+enum Gender {
+  MALE,
+  FEMALE,
+}
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender = Gender.FEMALE;
+
+  void changeSex(Gender gender) {
+    if (selectedGender == gender) {
+      return;
+    }
+
+    setState(() {
+      selectedGender = gender;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('build');
     return Scaffold(
         appBar: AppBar(
           title: Text('BMI CALCULATOR'),
@@ -24,20 +42,32 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(
-                      color: activeCardColor,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        lable: 'MALE',
+                    child: InkWell(
+                      onTap: () {
+                        changeSex(Gender.FEMALE);
+                      },
+                      child: ReusableCard(
+                        color: activeCardColor,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.venus,
+                          lable: 'FEMALE',
+                          isActive: selectedGender == Gender.FEMALE,
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
-                      color: activeCardColor,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        lable: 'FEMALE',
+                    child: GestureDetector(
+                      onTap: () {
+                        changeSex(Gender.MALE);
+                      },
+                      child: ReusableCard(
+                        color: activeCardColor,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.mars,
+                          lable: 'MALE',
+                          isActive: selectedGender == Gender.MALE,
+                        ),
                       ),
                     ),
                   ),

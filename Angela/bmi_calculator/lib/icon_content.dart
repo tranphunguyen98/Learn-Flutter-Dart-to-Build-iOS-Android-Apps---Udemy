@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
-const childCardBackgroundColor = Color(0xFF8D8E98);
-
-const lableTextStyle = TextStyle(
-  fontSize: 18.0,
-  color: childCardBackgroundColor,
-);
+const inactiveColor = Color(0xFF8D8E98);
+const activeColor = Colors.white;
 
 class IconContent extends StatelessWidget {
   final IconData icon;
   final String lable;
 
+  final bool isActive;
+
   IconContent({
     @required this.lable,
     @required this.icon,
+    this.isActive = true,
   });
 
   @override
@@ -24,13 +23,17 @@ class IconContent extends StatelessWidget {
         Icon(
           icon,
           size: 80.0,
+          color: isActive ? activeColor : inactiveColor,
         ),
         SizedBox(
           height: 16.0,
         ),
         Text(
           lable,
-          style: lableTextStyle,
+          style: TextStyle(
+            fontSize: 18.0,
+            color: isActive ? activeColor : inactiveColor,
+          ),
         ),
       ],
     );
