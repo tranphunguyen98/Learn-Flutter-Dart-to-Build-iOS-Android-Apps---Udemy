@@ -14,6 +14,7 @@ class BMICalculator extends StatelessWidget {
         primaryColor: Color(0xFF0A0D22),
         accentColor: Color(0xFFEB1555),
         scaffoldBackgroundColor: Color(0xFF0A0D22),
+        primaryColorLight: Color(0xFF1D1E33),
       ),
     );
   }
