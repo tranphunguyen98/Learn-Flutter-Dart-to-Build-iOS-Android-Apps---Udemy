@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-const inactiveColor = Color(0xFF8D8E98);
-const activeColor = Colors.white;
+import 'constants.dart';
 
 class IconContent extends StatelessWidget {
   final IconData icon;
@@ -23,7 +21,7 @@ class IconContent extends StatelessWidget {
         Icon(
           icon,
           size: 80.0,
-          color: isActive ? activeColor : inactiveColor,
+          color: isActive ? kActiveColor : kInactiveColor,
         ),
         SizedBox(
           height: 16.0,
@@ -32,7 +30,7 @@ class IconContent extends StatelessWidget {
           lable,
           style: TextStyle(
             fontSize: 18.0,
-            color: isActive ? activeColor : inactiveColor,
+            color: isActive ? kActiveColor : kInactiveColor,
           ),
         ),
       ],
