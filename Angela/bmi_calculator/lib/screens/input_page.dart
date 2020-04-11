@@ -1,15 +1,10 @@
-import 'package:bmi_calculator/results_page.dart';
-import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/components/bottom_panel.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/constants/constants.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'constants.dart';
-import 'icon_content.dart';
-
-enum Gender {
-  MALE,
-  FEMALE,
-}
 
 class InputPage extends StatefulWidget {
   @override
@@ -225,26 +220,16 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, ResultsPage.routeName);
+            BottomPanel(
+              label: 'CACULATE',
+              onPressed: () {
+                Navigator.pushNamed(context, ResultsPage.routeName, arguments: {
+                  'gender': Gender.MALE,
+                  'height': height,
+                  'weight': weight,
+                  'age': age,
+                });
               },
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  'CACULATE',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0,
-                  ),
-                ),
-                width: double.infinity,
-                height: 80.0,
-                color: Theme.of(context).accentColor,
-                margin: EdgeInsets.only(
-                  top: 12.0,
-                ),
-              ),
             )
           ],
         ));

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+enum Gender {
+  MALE,
+  FEMALE,
+}
+
 const kInactiveColor = Color(0xFF8D8E98);
 const kActiveColor = Colors.white;
 const kActiveCardColor = Color(0xFF1D1E33);
