@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/caculater_brain.dart';
 import 'package:bmi_calculator/components/bottom_panel.dart';
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
@@ -223,12 +224,9 @@ class _InputPageState extends State<InputPage> {
             BottomPanel(
               label: 'CACULATE',
               onPressed: () {
-                Navigator.pushNamed(context, ResultsPage.routeName, arguments: {
-                  'gender': Gender.MALE,
-                  'height': height,
-                  'weight': weight,
-                  'age': age,
-                });
+                final calc = CalculatorBrain(height: height, weight: weight);
+                Navigator.pushNamed(context, ResultsPage.routeName,
+                    arguments: {'calc': calc});
               },
             )
           ],
