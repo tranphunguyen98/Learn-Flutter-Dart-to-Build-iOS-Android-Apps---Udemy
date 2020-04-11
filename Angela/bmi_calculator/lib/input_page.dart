@@ -29,7 +29,7 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
+    // print('build');
 
     return Scaffold(
         appBar: AppBar(
@@ -95,17 +95,29 @@ class _InputPageState extends State<InputPage> {
                           ),
                         ],
                       ),
-                      Slider(
-                        onChanged: (value) {
-                          setState(() {
-                            height = value.round();
-                          });
-                        },
-                        value: height.toDouble(),
-                        min: 120.0,
-                        max: 220.0,
-                        activeColor: Theme.of(context).accentColor,
-                        inactiveColor: kInactiveColor,
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          thumbColor: Theme.of(context).accentColor,
+                          thumbShape:
+                              RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          overlayColor:
+                              Theme.of(context).accentColor.withOpacity(0.16),
+                          overlayShape: RoundSliderOverlayShape(
+                            overlayRadius: 24,
+                          ),
+                          activeTrackColor: Colors.white,
+                          inactiveTrackColor: kInactiveColor,
+                        ),
+                        child: Slider(
+                          onChanged: (value) {
+                            setState(() {
+                              height = value.round();
+                            });
+                          },
+                          value: height.toDouble(),
+                          min: 120.0,
+                          max: 220.0,
+                        ),
                       )
                     ],
                   )),
