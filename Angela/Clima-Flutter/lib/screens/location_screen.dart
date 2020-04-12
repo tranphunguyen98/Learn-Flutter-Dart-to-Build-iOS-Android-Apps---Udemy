@@ -3,11 +3,25 @@ import 'package:clima/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
   static const String routeNamed = '/location';
+
+  final weatherData;
+
+  LocationScreen(this.weatherData);
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  int temperature;
+
+  @override
+  void initState() {
+    temperature = widget.weatherData['main']['temp'];
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +64,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      '32°',
+                      '$temperature°',
                       style: kTempTextStyle,
                     ),
                     Text(

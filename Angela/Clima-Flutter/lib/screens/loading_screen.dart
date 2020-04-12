@@ -23,10 +23,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getWeather() async {
     await getLocation();
     final networkHeper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longtitude}&appid=5b84b3ed7e662d1abc027024534203d2');
+        'https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longtitude}&appid=5b84b3ed7e662d1abc027024534203d2&units=metric');
     final data = await networkHeper.getData();
     print(data['coord']['lon']);
-    Navigator.pushNamed(context, LocationScreen.routeNamed);
+    //Navigator.pushNamed(context, LocationScreen.routeNamed);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LocationScreen(data),
+      ),
+    );
   }
 
   @override
