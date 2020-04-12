@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'coin_data.dart';
@@ -14,6 +16,34 @@ class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
   @override
   Widget build(BuildContext context) {
+    var cupertinoPicker = CupertinoPicker(
+      backgroundColor: Colors.lightBlue,
+      onSelectedItemChanged: (index) {
+        setState(() {
+          selectedCurrency = currenciesList[index];
+        });
+      },
+      itemExtent: 32,
+      children: currenciesList.map((value) {
+        return Text(value);
+      }).toList(),
+    );
+
+    var dropdownButton = DropdownButton<String>(
+      items: currenciesList.map((value) {
+        return DropdownMenuItem(
+          child: Text(value),
+          value: value,
+        );
+      }).toList(),
+      onChanged: (value) {
+        setState(() {
+          selectedCurrency = value;
+        });
+      },
+      value: selectedCurrency,
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('🤑 Coin Ticker'),
@@ -48,33 +78,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: CupertinoPicker(
-              backgroundColor: Colors.lightBlue,
-              onSelectedItemChanged: (index) {
-                setState(() {
-                  selectedCurrency = currenciesList[index];
-                });
-              },
-              itemExtent: 32,
-              children: currenciesList.map((value) {
-                return Text(value);
-              }).toList(),
-            ),
-            // child: DropdownButton<String>(
-            //   items: currenciesList.map((value) {
-            //     return
-            //     DropdownMenuItem(
-            //       child: Text(value),
-            //       value: value,
-            //     );
-            //   }).toList(),
-            //   onChanged: (value) {
-            //     setState(() {
-            //       selectedCurrency = value;
-            //     });
-            //   },
-            //   value: selectedCurrency,
-            // ),
+            child: Platform.isIOS ? cupertinoPicker : dropdownButton,
           ),
         ],
       ),
