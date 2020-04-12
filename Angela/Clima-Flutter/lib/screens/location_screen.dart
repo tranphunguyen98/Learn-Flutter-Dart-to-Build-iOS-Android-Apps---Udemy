@@ -18,6 +18,7 @@ class _LocationScreenState extends State<LocationScreen> {
   int temperature;
 
   void updateUI(dynamic weatherData) {
+    print(weatherData);
     if (weatherData == null) {
       temperature = 0;
       return;
@@ -65,13 +66,19 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      String cityName = await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => CityScreen(),
                         ),
                       );
+                      if (cityName != null) {
+                        final weatherData =
+                            await WeatherModel().getCityWeatherData(cityName);
+
+                        updateUI(weatherData);
+                      }
                     },
                     child: Icon(
                       Icons.location_city,
