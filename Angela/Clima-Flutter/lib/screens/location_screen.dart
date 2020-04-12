@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
+  static const String routeNamed = '/location';
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
