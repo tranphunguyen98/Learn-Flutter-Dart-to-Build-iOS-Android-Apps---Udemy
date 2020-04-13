@@ -4,7 +4,7 @@ import 'login_screen.dart';
 import 'registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = 'wel';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -23,9 +23,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 60.0,
+                Hero(
+                  tag: 'logo',
+                  child: Container(
+                    child: Image.asset('images/logo.png'),
+                    height: 60.0,
+                  ),
                 ),
                 Text(
                   'Flash Chat',
