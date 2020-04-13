@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 import 'login_screen.dart';
@@ -21,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.initState();
     controller = AnimationController(
       duration: Duration(
-        seconds: 3,
+        seconds: 1,
       ),
       vsync: this,
     );
@@ -34,7 +35,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     animation =
         ColorTween(begin: Colors.blue, end: Colors.red).animate(controller);
 
-    controller.forward();
+    // controller.forward();
 
     // animation.addStatusListener((status) {
     //   if (status == AnimationStatus.dismissed) {
@@ -46,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     controller.addListener(() {
       // count++;
-      setState(() {});
+      // setState(() {});
       //print('${controller.value} $count ${animation.value}');
     });
   }
@@ -76,9 +77,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60.0,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
+                TypewriterAnimatedTextKit(
+                  speed: Duration(
+                    milliseconds: 100,
+                  ),
+                  text: ['Flash Chat'],
+                  textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
                   ),
