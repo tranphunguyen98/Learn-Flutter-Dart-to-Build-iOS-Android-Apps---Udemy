@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
