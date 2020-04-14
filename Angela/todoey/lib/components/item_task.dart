@@ -10,21 +10,42 @@ class ItemTask extends StatefulWidget {
 class _ItemTaskState extends State<ItemTask> {
   bool isCheck = false;
 
+  void changeCheck(bool value) {
+    setState(() {
+      isCheck = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Text(
         widget.taskText,
-        style: TextStyle(color: !isCheck ? Colors.black : Colors.red),
+        style: TextStyle(
+          decoration: isCheck ? TextDecoration.lineThrough : null,
+        ),
       ),
-      trailing: Checkbox(
-        onChanged: (value) {
-          setState(() {
-            isCheck = value;
-          });
-        },
-        value: isCheck,
+      trailing: TaskCheckBox(
+        isCheck: isCheck,
+        onChanged: changeCheck,
       ),
+    );
+  }
+}
+
+class TaskCheckBox extends StatelessWidget {
+  const TaskCheckBox({
+    @required this.isCheck,
+    @required this.onChanged,
+  });
+
+  final bool isCheck;
+  final Function onChanged;
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      onChanged: onChanged,
+      value: isCheck,
     );
   }
 }
