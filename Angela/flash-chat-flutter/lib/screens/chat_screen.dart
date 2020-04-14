@@ -41,12 +41,6 @@ class _ChatScreenState extends State<ChatScreen> {
       }
     }
   }
-  // void getMessages() async {
-  //   final snapshots = await _store.collection('messages').getDocuments();
-  //   for (var snapshot in snapshots.documents) {
-  //     print(snapshot.data);
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +64,26 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            StreamBuilder<QuerySnapshot>(
+                stream: _store.collection('messages').snapshots(),
+                builder: (context, asyncSnapshot) {
+                  if (asyncSnapshot.hasData) {
+                    List<Text> listText = [];
+                    for (var snapshot in asyncSnapshot.data.documents) {
+                      final messageText = snapshot.data['text'];
+                      final messageSender = snapshot.data['sender'];
+                      listText.add(Text('$messageText from $messageSender'));
+                    }
+                    return Column(
+                      children: listText,
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.blueAccent,
+                    ),
+                  );
+                }),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
