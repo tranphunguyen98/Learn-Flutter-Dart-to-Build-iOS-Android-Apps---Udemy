@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/components/item_task.dart';
 
 class TaskScreen extends StatelessWidget {
   @override
@@ -68,27 +69,9 @@ class TaskScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                   child: ListView(
                     children: <Widget>[
-                      ListTile(
-                        leading: Text('This is a task'),
-                        trailing: Checkbox(
-                          onChanged: (value) {},
-                          value: false,
-                        ),
-                      ),
-                      ListTile(
-                        leading: Text('This is a task'),
-                        trailing: Checkbox(
-                          onChanged: (value) {},
-                          value: false,
-                        ),
-                      ),
-                      ListTile(
-                        leading: Text('This is a task'),
-                        trailing: Checkbox(
-                          onChanged: (value) {},
-                          value: true,
-                        ),
-                      ),
+                      ItemTask('This is a task'),
+                      ItemTask('This is a task1'),
+                      ItemTask('This is a task2'),
                     ],
                   ),
                 ),
