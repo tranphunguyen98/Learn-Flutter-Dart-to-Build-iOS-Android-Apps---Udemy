@@ -62,7 +62,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     height: 8.0,
                   ),
                   Text(
-                    '12 Task',
+                    '${listTask.length} Task',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.white,
@@ -85,7 +85,14 @@ class _TaskScreenState extends State<TaskScreen> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: TaskList(),
+                child: TaskList(
+                  listTask: listTask,
+                  checkBoxCallBack: (newState, index) {
+                    setState(() {
+                      listTask[index].toggleDone();
+                    });
+                  },
+                ),
               ),
             ),
           ],

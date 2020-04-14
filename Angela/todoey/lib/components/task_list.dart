@@ -3,14 +3,10 @@ import 'package:todoey/models/task.dart';
 
 import 'item_task.dart';
 
-class TaskList extends StatefulWidget {
-  @override
-  _TaskListState createState() => _TaskListState();
-}
-
-class _TaskListState extends State<TaskList> {
-  List<Task> listTask = [Task(content: 'Task 1'), Task(content: 'Task 2')];
-
+class TaskList extends StatelessWidget {
+  final List<Task> listTask;
+  final checkBoxCallBack;
+  TaskList({this.listTask, this.checkBoxCallBack});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -18,10 +14,8 @@ class _TaskListState extends State<TaskList> {
         itemBuilder: (context, index) => ItemTask(
               taskText: listTask[index].content,
               isDone: listTask[index].isDone,
-              checkBoxCallBack: (newState) {
-                setState(() {
-                  listTask[index].toggleDone();
-                });
+              checkBoxCallBack: (state) {
+                checkBoxCallBack(state, index);
               },
             ));
   }
