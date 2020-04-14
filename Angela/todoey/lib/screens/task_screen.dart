@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/components/item_task.dart';
 import 'package:todoey/components/task_list.dart';
+import 'package:todoey/screens/add_task_screen.dart';
 
 class TaskScreen extends StatelessWidget {
   @override
@@ -11,7 +11,10 @@ class TaskScreen extends StatelessWidget {
         child: Icon(
           Icons.add,
         ),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context, builder: (context) => AddTaskScreen());
+        },
       ),
       body: SafeArea(
         child: Column(
