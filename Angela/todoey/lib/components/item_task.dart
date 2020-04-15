@@ -5,21 +5,24 @@ import 'package:todoey/models/task.dart';
 class ItemTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final task = Provider.of<Task>(context);
-    return ListTile(
-      leading: Text(
-        task.content,
-        style: TextStyle(
-          fontSize: 18.0,
-          decoration: task.isDone ? TextDecoration.lineThrough : null,
-        ),
-      ),
-      trailing: TaskCheckBox(
-        isCheck: task.isDone,
-        onChanged: (value) {
-          task.toggleDone();
-        },
-      ),
+    return Consumer<Task>(
+      builder: (context, task, child) {
+        return ListTile(
+          leading: Text(
+            task.content,
+            style: TextStyle(
+              fontSize: 18.0,
+              decoration: task.isDone ? TextDecoration.lineThrough : null,
+            ),
+          ),
+          trailing: TaskCheckBox(
+            isCheck: task.isDone,
+            onChanged: (value) {
+              task.toggleDone();
+            },
+          ),
+        );
+      },
     );
   }
 }

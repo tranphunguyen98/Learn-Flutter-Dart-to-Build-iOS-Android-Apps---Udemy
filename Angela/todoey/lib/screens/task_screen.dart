@@ -56,7 +56,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     height: 8.0,
                   ),
                   Text(
-                    '${brainTask.listTask.length} Task',
+                    '${brainTask.taskCount} Task',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.white,

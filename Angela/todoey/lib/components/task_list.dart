@@ -8,12 +8,15 @@ import 'item_task.dart';
 class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final listTask = Provider.of<TaskBrain>(context).listTask;
-    return ListView.builder(
-        itemCount: listTask.length,
-        itemBuilder: (context, index) => ChangeNotifierProvider<Task>(
-              create: (context) => listTask[index],
-              child: ItemTask(),
-            ));
+    return Consumer<TaskBrain>(
+      builder: (context, tasks, child) {
+        return ListView.builder(
+            itemCount: tasks.taskCount,
+            itemBuilder: (context, index) => ChangeNotifierProvider<Task>(
+                  create: (context) => tasks.listTask[index],
+                  child: ItemTask(),
+                ));
+      },
+    );
   }
 }
