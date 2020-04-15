@@ -20,4 +20,14 @@ class TaskBrain with ChangeNotifier {
     _listTask.add(task);
     notifyListeners();
   }
+
+  void toggleDone(Task task) {
+    task.toggleDone();
+    notifyListeners();
+  }
+
+  void deleteTask(Task task) {
+    _listTask.remove(task);
+    notifyListeners();
+  }
 }

@@ -4,12 +4,7 @@ import 'package:todoey/components/task_list.dart';
 import 'package:todoey/models/task_brain.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 
-class TaskScreen extends StatefulWidget {
-  @override
-  _TaskScreenState createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
+class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brainTask = Provider.of<TaskBrain>(context);

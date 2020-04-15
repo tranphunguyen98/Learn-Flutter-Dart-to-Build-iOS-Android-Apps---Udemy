@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todoey/models/task.dart';
 
 class ItemTask extends StatelessWidget {
+  final String text;
+  final bool isDone;
+  final Function toggleDone;
+  final Function deleteTask;
+
+  ItemTask({this.text, this.isDone, this.toggleDone, this.deleteTask});
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<Task>(
-      builder: (context, task, child) {
-        return ListTile(
-          leading: Text(
-            task.content,
-            style: TextStyle(
-              fontSize: 18.0,
-              decoration: task.isDone ? TextDecoration.lineThrough : null,
-            ),
-          ),
-          trailing: TaskCheckBox(
-            isCheck: task.isDone,
-            onChanged: (value) {
-              task.toggleDone();
-            },
-          ),
-        );
-      },
+    return ListTile(
+      onLongPress: deleteTask,
+      leading: Text(
+        text,
+        style: TextStyle(
+          fontSize: 18.0,
+          decoration: isDone ? TextDecoration.lineThrough : null,
+        ),
+      ),
+      trailing: TaskCheckBox(
+        isCheck: isDone,
+        onChanged: (value) {
+          toggleDone();
+        },
+      ),
     );
   }
 }
